@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: hsla(198, 89%, 44%, 1);
+  color: #fff;
+  margin: 1rem;
+}
+
+h1, h2, h3, b {
+  font-weight: 600;
+  color: #fff;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-top: 2em;
+  text-align: center;
+  font-weight: 500;
+}
+
+h2 {
+  margin-bottom: 2rem;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+ul {
+  padding: 0;
+  margin-top: 2em;
+  list-style-type: none;
+}
+
+li {
+  padding: 1.5rem 2rem;
+  position: relative;
+  background: hsla(198, 89%, 38%, 1);
+}
+
+li + li {
+  margin-top: 1em;
+}
+
+section {
+  max-width: 720px;
+  margin: 2em auto;
+}
+
+input {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  padding: .75rem 1.5rem;
+  border: 1px solid #444;
+}
+
+.legacy {
+  font-size: .9em;
+  color: rgba(255, 255, 255, .8);
+}
+
+.legacy b {
+  color: #fff;
+}
+
+.alternative {  
+  margin-top: 1.5em;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 2rem;
+}
+
+.byline {
+  font-size: .9em;
+  margin-top: .7rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  align-self: top;
+}
+
+a.button {
+  display: block;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: .5em 1.2em .52em;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  background: #57bd35;
+  margin: 0 auto;
+  max-width: 300px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
+  box-shadow: 0 2px 0 0 rgba(0,0,0,.1),inset 0 -2px 0 0 rgba(56,136,30,.5);
+}
+
+a.button:hover {
+  box-shadow: 0 2px rgba(0,0,0,.1),inset 0 -2px rgba(0,0,0,.1),inset 0 0 100px rgba(255,255,255,.2);
+}
+
+.noresults {
+  text-align: center;
+  padding: 2rem 0 3rem;
+}
+
+a:link {
+  color: #fff;
+}
+
+.noslug .info {
+  grid-column: span 2;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: 12px;
+  }
+  h1 {
+    margin: 2rem 0;
+  }
+  .alternative {
+    grid-template-columns: auto 1fr;
+    grid-gap: 1rem;
+  }
+  li {
+    padding: 1rem;
+  }
+  .cta {
+    grid-column: 1 / -1;
+    align-items: stretch;
+  }
+  .legacy {
+    font-size: .9rem;
+  }
+}

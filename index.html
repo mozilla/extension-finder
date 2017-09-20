@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Firefox Extension Alternative Pal</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <section>
+      <h1>
+        Firefox Extension Alternative Pal
+      </h1>
+      <input class="search" disabled placeholder="loading data...">
+      <ul class="out">
+        <template id="search-result-addon">
+          <li>
+            <div class="legacy">
+              <b class="legacy-name"></b>
+              suggested alternative:
+            </div>
+            <div class="alternative">
+              <img class="icon">
+              <div class="info">
+                <h3 class="alt-name"></h3>
+                <div class="byline">by <span class="alt-author"></span></div>
+              </div>
+              <div class="cta">
+                <a class="button">Learn More</a>
+              </div>
+            </div>
+          </li>
+        </template>
+        <template id="search-result-general">
+          <li>
+            <div class="legacy">
+              <b class="legacy-name"></b>
+              suggested alternative:
+            </div>
+            <div class="alternative noslug">
+              <div class="info">
+                <h3 class="alt-name"></h3>
+              </div>
+              <div class="cta">
+                <a class="button">Learn More</a>
+              </div>
+            </div>
+          </li>
+        </template>
+        <template id="search-result-empty">
+          <li class="noresults">
+            <h2>
+              No results found for &ldquo;<span class="query"></span>&rdquo;
+            </h2>
+            <a class="button">search addons.mozilla.org ➡</a>
+          </li>
+        </template>
+      </ul>
+    </section>
+    <script src="/lunr.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
