@@ -4,14 +4,14 @@
 
 body {
   font-family: sans-serif;
-  background: hsla(198, 89%, 44%, 1);
-  color: #fff;
+  background: #fff;
+  color: #000;
   margin: 1rem;
 }
 
 h1, h2, h3, b {
   font-weight: 600;
-  color: #fff;
+  color: #000;
 }
 
 h1 {
@@ -39,7 +39,7 @@ ul {
 li {
   padding: 1.5rem 2rem;
   position: relative;
-  background: hsla(198, 89%, 38%, 1);
+  background: hsl(199, 100%, 68%);
 }
 
 li + li {
@@ -61,13 +61,20 @@ input {
   border: 1px solid #444;
 }
 
+.smallprint {
+  font-size: .9em;
+  color: #000;
+  text-align: center;
+  margin-top: .8em;
+}
+
 .legacy {
   font-size: .9em;
-  color: rgba(255, 255, 255, .8);
+  color: #000;
 }
 
 .legacy b {
-  color: #fff;
+  color: #000;
 }
 
 .alternative {  
@@ -81,7 +88,7 @@ input {
 .byline {
   font-size: .9em;
   margin-top: .7rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #000;
 }
 
 .icon {
@@ -107,6 +114,11 @@ a.button {
   text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
   box-shadow: 0 2px 0 0 rgba(0,0,0,.1),inset 0 -2px 0 0 rgba(56,136,30,.5);
 }
+a.button:link,
+a.button:visited,
+a.button:active {
+  color: #fff;
+}
 
 a.button:hover {
   box-shadow: 0 2px rgba(0,0,0,.1),inset 0 -2px rgba(0,0,0,.1),inset 0 0 100px rgba(255,255,255,.2);
@@ -118,7 +130,7 @@ a.button:hover {
 }
 
 a:link {
-  color: #fff;
+  color: #000;
 }
 
 .noslug .info {
