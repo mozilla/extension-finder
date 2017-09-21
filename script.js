@@ -49,11 +49,17 @@ function buildIndex(data) {
 function init({ idx, addons }) {
   let input = $('input');
   let outEl = $('.out');
+  let allAddons = Object.values(addons).sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
   
   function search(query) {
-    let results = idx.search('*' + query + '*');
+    let results, out;
+    if (query) {
+      results = idx.search('*' + query + '*');
+      out = results.map(r => addons[r.ref]);
+    } else {
+      out = allAddons;
+    }
     
-    let out = results.slice(0,5).map(r => addons[r.ref]);
     outEl.innerHTML = '';
     
     if (out.length) {
@@ -65,7 +71,6 @@ function init({ idx, addons }) {
     
   input.addEventListener('input', function (e) {
     let query = input.value.trim();
-    if (!query) return;
     search(query);
   }, { passive: true });
   
@@ -79,6 +84,8 @@ function init({ idx, addons }) {
   if (query) {
     input.value = query;
     search(query);
+  } else {
+    search();
   }
   
   input.focus();
@@ -141,7 +148,7 @@ function process(entry) {
   let obj = {
     name: entry.gsx$legacycontent.$t,
     suggested: {
-      name: entry.gsx$webextensionreplacements.$t,
+      name: entry.gsx$webextensionreplacement.$t,
       url: entry.gsx$url.$t
     }
   };
