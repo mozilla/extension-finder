@@ -7,6 +7,7 @@ body {
   background: #fff;
   color: #000;
   margin: 1rem;
+  line-height: 1.4;
 }
 
 h1, h2, h3, b {
@@ -140,6 +141,7 @@ a:link {
 @media screen and (max-width: 500px) {
   body {
     font-size: 12px;
+    line-height: 1.2;
   }
   h1 {
     margin: 2rem 0;
