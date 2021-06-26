@@ -1,4 +1,8 @@
 ---
-sdsf
-sdfsd
-dsf
+u_name: Correct Identity
+u_link: https://addons.thunderbird.net/addon/correct-identity/
+u_id: {47ef7cc0-2201-11da-8cd6-0800200c9a66}
+r_name: Identity Chooser
+r_link: https://addons.thunderbird.net/addon/identity-chooser/
+r_id: identitychooser@janek.org
+---
