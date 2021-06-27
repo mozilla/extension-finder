@@ -1,5 +1,44 @@
 /* global lunr */
 
+async function dataToJSON(data) {
+  let entries = [];
+  
+  let lines = data.split(/\r\n|\n/);
+  let i = 0;
+
+  do
+   {
+    let entry = {};
+    while (i < lines.length) {
+      i++;
+      let line = lines[i-1].trim();
+
+      // End of Block
+      if (line.startsWith("---")) {
+        break;
+      }
+      // Skip comments.
+      if (line.startsWith("#")) {
+        continue;
+      }
+      let parts = line.split(":");
+      let key = parts.shift().trim();
+      if (key) {
+        let value = parts.join(":").trim();
+        entry[key] = value;
+      }
+    }
+
+    // Add found entry.
+    if (Object.keys(entry).length > 0) {
+      entries.push(entry);
+    }
+  } while (i < lines.length);
+  
+  return entries;
+}
+
+
 const sheetId = '1ZzheVRDnEpAwdQ3eHDVI6Hu5om5zhp2YtSCeB0mmLUQ';
 
 const slugMatch = /\/addon\/([^\/]+)\//;
@@ -26,9 +65,11 @@ function loadData() {
   let url = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/full?alt=json`;
 
   return fetch(url).then(r => r.json());
+  
 }
 
 function buildIndex(data) {
+  console.log(data.feed)
   let b = new lunr.Builder();
   
   b.field('name');
@@ -163,5 +204,6 @@ function process(entry) {
 }
 
 window.addEventListener('load', function (e) {
+  fetch("https://thundernest.github.io/extension-finder/data.yaml").then(r => r.text()).then(dataToJSON).then(console.log);
   loadData().then(buildIndex).then(init);
 });
