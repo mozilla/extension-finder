@@ -133,7 +133,7 @@ function init({ idx, addons }) {
     search(query);
   }, { passive: true });
   
-  input.setAttribute('placeholder', 'name of legacy extension');
+  input.setAttribute('placeholder', 'name of unmaintained extension');
   input.disabled = false;
   
   let loc = new URL(window.location);
