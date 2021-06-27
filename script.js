@@ -38,7 +38,7 @@ async function dataToJSON(data) {
   return entries;
 }
 
-const slugMatch = /\/addon\/([^\/]+)\//;
+//const slugMatch = /\/addon\/([^\/]+)\//;
 
 const templates = {
   results: {
@@ -68,8 +68,8 @@ function loadData() {
 function buildIndex(data) {
   let b = new lunr.Builder();
   
-  b.field('name');
-  b.ref('name');
+  b.field('name'); //search field
+  b.ref('idx'); // unique index reference
 
   let addons = {};
   
@@ -77,7 +77,7 @@ function buildIndex(data) {
   data.forEach(e => {
     let record = process(e);
     b.add(record);
-    addons[record.name] = record;
+    addons[record.idx] = record;
   });
   
   let idx = b.build();
@@ -87,6 +87,7 @@ function buildIndex(data) {
 
 function process(entry) {
   let obj = {
+    idx: entry["r_name"],//.gsx$legacycontent.$t,
     name: entry["u_name"],//.gsx$legacycontent.$t,
     suggested: {
       name: entry["r_name"],//.gsx$webextensionreplacement.$t,
@@ -198,13 +199,12 @@ function generalResult(result) {
 function emptyResult(query) {
   return stamp(templates.results.empty, $=> {
     $('.query').textContent = query;
-    $('.button').href = `https://addons.mozilla.org/firefox/search/?q=${query}&appver=57.0`;
+    $('.button').href = `https://addons.thunderbird.net/search/?q=${query}&appver=78.0`;
   });
 }
 
 
 
 window.addEventListener('load', function (e) {
-  //fetch("https://raw.githubusercontent.com/thundernest/extension-finder/master/data.yaml").then(r => r.text()).then(dataToJSON).then(console.log);
   loadData().then(buildIndex).then(init);
 });
