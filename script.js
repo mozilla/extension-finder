@@ -38,9 +38,6 @@ async function dataToJSON(data) {
   return entries;
 }
 
-
-const sheetId = '1ZzheVRDnEpAwdQ3eHDVI6Hu5om5zhp2YtSCeB0mmLUQ';
-
 const slugMatch = /\/addon\/([^\/]+)\//;
 
 const templates = {
@@ -62,14 +59,13 @@ function $(selector, parent=document) {
 }
 
 function loadData() {
-  let url = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/full?alt=json`;
-
-  return fetch(url).then(r => r.json());
-  
+  // const sheetId = '1ZzheVRDnEpAwdQ3eHDVI6Hu5om5zhp2YtSCeB0mmLUQ';
+  // let url = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/full?alt=json`;
+  let url = "https://raw.githubusercontent.com/thundernest/extension-finder/master/data.yaml"
+  return fetch(url).then(r => r.text()).then(dataToJSON);
 }
 
 function buildIndex(data) {
-  console.log(data.feed)
   let b = new lunr.Builder();
   
   b.field('name');
@@ -77,14 +73,35 @@ function buildIndex(data) {
 
   let addons = {};
   
-  data.feed.entry.forEach(e => {
+  // data.feed.entry.forEach(e => {
+  data.forEach(e => {
     let record = process(e);
     b.add(record);
     addons[record.name] = record;
   });
   
   let idx = b.build();
+  console.log({idx, addons})
   return { idx, addons };  
+}
+
+function process(entry) {
+  let obj = {
+    name: entry["u_name"],//.gsx$legacycontent.$t,
+    suggested: {
+      name: entry["r_name"],//.gsx$webextensionreplacement.$t,
+      url: entry["r_link"],//.gsx$url.$t
+      slug: entry["r_id"],
+    }
+  };
+  
+  /*let match = obj.suggested.url.match(slugMatch);
+  
+  if (match) {
+    obj.suggested.slug = match[1];
+  }*/
+  
+  return obj;
 }
 
 function init({ idx, addons }) {
@@ -146,7 +163,7 @@ function getAddonData(slug) {
     if (slug in cachedAddons) {
       resolve(cachedAddons[slug]);
     } else {
-      let p = fetch(`https://addons.mozilla.org/api/v3/addons/addon/${slug}/`).then(r => r.json())
+      let p = fetch(`https://addons.thunderbird.net/api/v4/addons/addon/${slug}/`).then(r => r.json())
       p.then(data => cachedAddons[slug] = p);
       resolve(p);
     }
@@ -185,25 +202,9 @@ function emptyResult(query) {
   });
 }
 
-function process(entry) {
-  let obj = {
-    name: entry.gsx$legacycontent.$t,
-    suggested: {
-      name: entry.gsx$webextensionreplacement.$t,
-      url: entry.gsx$url.$t
-    }
-  };
-  
-  let match = obj.suggested.url.match(slugMatch);
-  
-  if (match) {
-    obj.suggested.slug = match[1];
-  }
-  
-  return obj;
-}
+
 
 window.addEventListener('load', function (e) {
-  fetch("https://thundernest.github.io/extension-finder/data.yaml").then(r => r.text()).then(dataToJSON).then(console.log);
+  //fetch("https://raw.githubusercontent.com/thundernest/extension-finder/master/data.yaml").then(r => r.text()).then(dataToJSON).then(console.log);
   loadData().then(buildIndex).then(init);
 });
