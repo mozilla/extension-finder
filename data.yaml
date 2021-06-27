@@ -6,10 +6,23 @@ r_name: Identity Chooser
 r_link: https://addons.thunderbird.net/addon/identity-chooser/
 r_id: identitychooser@janek.org
 ---
-u_name: Get All Mail Button Thunderbird
-u_link: https://addons.thunderbird.net/en-US/thunderbird/addon/get-all-mail-button/
+u_name: Get All Mail Button
+u_link: https://addons.thunderbird.net/addon/get-all-mail-button/
 u_id: {0D4D76B0-657A-41b0-B3ED-60C638F4D97D}
-r_name: Get All Mail Button
-r_link: https://addons.thunderbird.net/en-US/thunderbird/addon/get-all-mail-button-for-tb78/
+r_name: Get All Mail Button for TB78++
+r_link: https://addons.thunderbird.net/addon/get-all-mail-button-for-tb78/
 r_id: gamb@pharqcon.com
 ---
+u_name: gContactSync
+u_link: https://addons.thunderbird.net/addon/gcontactsync/
+u_id: gContactSync@pirules.net
+r_name: Google-4-TbSync
+r_link: https://addons.thunderbird.net/addon/google-4-tbsync/
+r_id: google-4-tbsync@marcozanon.com
+---
+u_name: gContactSync
+u_link: https://addons.thunderbird.net/addon/gcontactsync/
+u_id: gContactSync@pirules.net
+r_name: CardBook
+r_link: https://addons.thunderbird.net/addon/cardbook/
+r_id: cardbook@vigneau.philippe
